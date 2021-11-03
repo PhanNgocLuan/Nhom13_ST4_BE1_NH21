@@ -24,6 +24,5 @@ class Product extends Db
         $sql->bind_param('s', $search);
         return parent::select($sql);
     }
-    ///daovanchung
 }
 
