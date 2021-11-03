@@ -2,8 +2,8 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Oct 23, 2021 at 02:23 PM
+-- Host: 127.0.0.1:3309
+-- Generation Time: Nov 03, 2021 at 12:49 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -21,6 +21,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `nhom13`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_rate` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `name_comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -64,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `feature` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
@@ -103,7 +120,8 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`
 (31, 'Tai nghe Anker Soundcore Verve', 5, 3, 290000, 'anker-soundcore-verve.jpg', 'Thiết kế bền bỉ, đàn hồi trên tai nghe Anker Soundbuds Verve\r\nTai nghe Anker Soundbuds Verve được trang bị thiết kế bền bỉ với dây nối mạnh mẽ nhưng linh hoạt được thiết kế để chịu được uốn cong hơn 15000 lần, nhằm đảo bảo trước sự hao mòn của việc sử dụng hằng ngày do đây là thiết bị tai nghe có dây cắm jack 3.5mm nên việc va chạm là điều không tránh khỏi.', 0, '2021-10-20 03:18:45'),
 (32, 'Cáp Anker PowerLine II Lightning 3m A8432', 5, 5, 344000, 'cap-lightning-anker-powerline-ii-a8434-3m.jpg', 'Bền bỉ gấp 5 lần với 12000 lần uốn cong\r\nAnker đã làm mọi cách để đưa thương hiệu trở thành phụ kiện bền bỉ nhất thế giới. Chứng minh bằng những thử nghiệm chân thực nhất, cáp Anker PowerLine II Lightning 3m A8434 có độ bền cao gấp 5 lần so với cáp sạc thông thường.', 0, '2021-10-20 03:21:00'),
 (33, 'Sạc Anker PowerPort Mini 12w 2 Cổng - A2620', 5, 5, 225000, 'sac-anker-powerport-mini-2-cong-12w-a2620_1.jpg', 'Anker PowePort Mini 12W với thiết kế nhỏ gọn vừa vặn trong lòng bàn tay\r\nĐối với những người đang sử dụng những ổ cắm có kích thước nhỏ thì việc có được một củ sạc nhỏ gọn là điều vô cùng tiện ích. Nắm được điểm yếu này Anker đã cho ra đời sản phẩm có kích thước siêu nhỏ giúp tiết kiệm không gian tối đa trên các ổ cắm', 0, '2021-10-20 03:23:30'),
-(34, 'Tai Nghe Bluetooth Anker SoundCore SoundBuds Slim', 5, 3, 800000, '51my0cfnshl._sl1500__e7b84200b0bc4c0ba7b9e10ef349727d_master', 'Anker soundcore slim - Thiết kế siêu nhẹ chỉ 14g, thoải mái với EarTips và EarWings nhiều lớp, nhiều kích cỡ\r\nAnker Soundcore Slim được thiết kế mỏng và nhẹ (14g) với kích thước 55.3x3.1x1.2 cm, đồng thời mang lại hiệu năng cao. Hai tai gắn với nhau bằng từ tính khi không sử dụng dễ dàng cất gọn vào túi mang đi. Phần củ tai được thiết kế nghiêng một góc 45 độ giúp tai nghe vào sâu hơn, thiết kế này giúp tai nghe dạng in-ear này vào sâu hơn trong ống tai từ đó nâng cao chất lượng âm bass.', 0, '2021-10-20 03:25:46');
+(34, 'Tai Nghe Bluetooth Anker SoundCore SoundBuds Slim', 5, 3, 800000, '51my0cfnshl._sl1500__e7b84200b0bc4c0ba7b9e10ef349727d_master', 'Anker soundcore slim - Thiết kế siêu nhẹ chỉ 14g, thoải mái với EarTips và EarWings nhiều lớp, nhiều kích cỡ\r\nAnker Soundcore Slim được thiết kế mỏng và nhẹ (14g) với kích thước 55.3x3.1x1.2 cm, đồng thời mang lại hiệu năng cao. Hai tai gắn với nhau bằng từ tính khi không sử dụng dễ dàng cất gọn vào túi mang đi. Phần củ tai được thiết kế nghiêng một góc 45 độ giúp tai nghe vào sâu hơn, thiết kế này giúp tai nghe dạng in-ear này vào sâu hơn trong ống tai từ đó nâng cao chất lượng âm bass.', 0, '2021-10-20 03:25:46'),
+(60, 'iPhone 13 Pro Max', 1, 1, 33990000, 'iphone13pro.jpg', 'Một trong những yếu tố khiến iPhone 13 Pro Max đáng mong chờ đó là thiết kế notch \"tai thỏ\" được thu gọn lại. Ngoài kích cỡ màn hình 6.7 inch với tấm nền Super Retina XDR OLED, máy sẽ có thiết kế notch được thu hẹp lại, giúp tăng tỷ lệ hiển thị trên màn hình điện thoại. Tất nhiên, những cảm biến quan trọng như TrueDepth, Face ID hoặc camera selfie đều sẽ giữ nguyên vị trí.', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
