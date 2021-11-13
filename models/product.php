@@ -19,9 +19,18 @@ class Product extends Db
     }
     public function searchProducts($keyword)
     {
-        $sql = parent::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ?");
+        $sql = parent::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? ");
         $search = "%{$keyword}%";
         $sql->bind_param('s', $search);
+        return parent::select($sql);
+    }
+    public function search3Products($keyword,$page,$perPage)
+    {
+        // Tính số thứ tự trang bắt đầu 
+    	$firstLink = ($page - 1) * $perPage;
+        $sql = parent::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? LIMIT ? , ? ");
+        $search = "%{$keyword}%";
+        $sql->bind_param('sii', $search,$firstLink, $perPage);
         return parent::select($sql);
     }
     //hien Thi theo loai san pham
@@ -31,7 +40,7 @@ class Product extends Db
         $sql->bind_param("i", $type_id);
         return parent::select($sql);
     }
-    //Phân Trang
+    //Phân trang cho type
     public function get3ProductByType($type_id,$page,$perPage)
     {
         // Tính số thứ tự trang bắt đầu 

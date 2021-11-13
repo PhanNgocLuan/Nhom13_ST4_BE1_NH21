@@ -4,12 +4,11 @@ submit.addEventListener('click', () => {
     const comment_content = document.querySelector('#comment_content');
     const comment_rate = document.querySelector('#comment_rate');
     const name_comment = document.querySelector('#name_comment');
-    
+
 
     if (comment_content.value != "" && comment_rate.value != "" && name_comment.value != "") {
         addComment(comment_content.value, comment_rate.value, product_id.value, name_comment.value);
-    }
-    else {
+    } else {
         const divResults = document.querySelector('#show-comment');
         divResults.innerHTML += `<p>Vui lòng nhập đầy đủ dữ liệu</p>`;
     }
@@ -20,14 +19,11 @@ async function addComment(comment_content, comment_rate, product_id, name_commen
     let date = "";
     if (today.getMonth() < 10 && today.getDate() < 10) {
         date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
-    }
-    else if (today.getDate() < 10) {
+    } else if (today.getDate() < 10) {
         date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + today.getDate();
-    }
-    else if (today.getMonth() < 10) {
+    } else if (today.getMonth() < 10) {
         date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
-    }
-    else {
+    } else {
         date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     }
 
@@ -52,17 +48,16 @@ async function addComment(comment_content, comment_rate, product_id, name_commen
         star += '<i class="fa fa-star" style="color:#FF9900"></i>';
         var sum = 0;
         var total_star = 0;
-        result.forEach(function (element) {
+        result.forEach(function(element) {
             sum += element.comment_rate;
         });
         if (sum <= 0) {
             total_star = 0;
-        }
-        else {
+        } else {
             total_star = Math.round(sum / result.length);
         }
         let start_num = document.querySelector('#star_num');
-        if(start_num == null){
+        if (start_num == null) {
             start_num = 0;
             start_num.innerHTML = total_star;
         }
@@ -81,43 +76,3 @@ async function addComment(comment_content, comment_rate, product_id, name_commen
         </div>
     `;
 }
-//search
-const searchbox = document.querySelector('#search');
-searchbox.addEventListener('keyup', function () {
-    searchByKeyword(searchbox.value);
-});
-
-async function searchByKeyword(keyword) {
-    const url = './getSearch.php';
-    const data = {keyword: keyword};
-
-    const response = await fetch(url, {
-        method : "POST",
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Accept': 'application/json;charset=UTF-8'
-        },
-        body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-
-    const divResult = document.querySelector('#show-list');
-    divResult.innerHTML = '';
-    result.forEach(item => {
-        let keyWordReg = new RegExp(keyword,"gi");
-        let productName = item.product_name.replace(keyWordReg, `<b>${keyword}</b>`);
-        divResult.innerHTML += `
-        <div class=' list-group-item list-group-item-action border-1'>
-            <div class="row">
-                <div class="col-md-9">
-                    <a href='product.php/-${item.id}'>${productName}</a>
-                </div>
-                <div class="col-md-3">
-                    <img class='img-fluid' src='./img/${item.product_photo}'>
-                </div>
-            </div>
-       </div>
-        `;
-    })
-} 

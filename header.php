@@ -3,7 +3,7 @@ require "config.php";
 require "models/db.php";
 require "models/product.php";
 require "models/Comments.php";
-require "models/Protype.php";
+require "models/protype.php";
 $protype = new Protype;
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
@@ -188,7 +188,7 @@ $comment = new Comments();
 						<?php
 						foreach($getAllProtype as $value):
 						?>
-						<li><a href="products.php?type_id=<?php echo $value ['type_id']?>">
+						<li><a href="product.php?type_id=<?php echo $value ['type_id']?>">
 						<?php echo $value['type_name'] ?></a></li>
 						<?php endforeach;?>
 					</ul>

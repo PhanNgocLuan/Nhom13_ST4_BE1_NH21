@@ -1,7 +1,5 @@
-<?php $key = $_GET['key']; ?>
 <?php include "header.php"; ?>
 	<body>
-		<?php $productList = $product->searchProducts($key); ?>
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -174,7 +172,19 @@
 
 						<!-- store products -->
 						<div class="row">
-						<?php foreach ($productList as $value) { ?>
+						<?php if(isset($_GET['key'])){
+						$key = $_GET['key'];
+						$productList = $product->searchProducts($key);
+						// hiển thị 3 sản phẩm trên 1 trang
+						$perPage = 3; 				
+						// Lấy số trang trên thanh địa chỉ
+						$page = isset($_GET['page'])?$_GET['page']:1;			
+						// Tính tổng số dòng, ví dụ kết quả là 18
+						$total = count($productList); 					
+						// lấy đường dẫn đến file hiện hành
+						$url = $_SERVER['PHP_SELF'].'?key='.$key ;
+						$search3Products =$product->search3Products($key,$page,$perPage);
+						foreach ($search3Products as $value) { ?>
 							<!-- product -->
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
@@ -183,7 +193,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="product.php?id=<?php echo $value['id']?>"><?php echo $value['name'] ?></a></h3>
+										<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id']?>"><?php echo $value['name'] ?></a></h3>
 										<h4 class="product-price"><?php echo number_format($value['price']) ?> VND</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -209,16 +219,14 @@
 
 						<!-- store bottom filter -->
 						<div class="store-filter clearfix">
-							<span class="store-qty">Showing 20-100 products</span>
 							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								<?php 
+								echo  $product->paginate($url,$total,$perPage);
+								?>
 							</ul>
 						</div>
 						<!-- /store bottom filter -->
+						<?php } ?>
 					</div>
 					<!-- /STORE -->
 				</div>
