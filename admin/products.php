@@ -49,6 +49,7 @@
               </thead>
               <tbody>
               <?php 
+              //khai báo product
               $product = new Product;
               $getAllProducts = $product->getAllProducts();
               foreach($getAllProducts as $value){ ?>

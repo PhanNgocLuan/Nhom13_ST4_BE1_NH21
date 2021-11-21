@@ -8,5 +8,4 @@ class Product extends Db{
         AND products.type_id=protypes.type_id");
         return parent::select($sql);
     }
-    
 }
