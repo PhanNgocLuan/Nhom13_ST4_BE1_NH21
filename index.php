@@ -86,8 +86,8 @@
 										<?php foreach($getNew10Products as $value){ ?>
 										<!-- product -->
 										<div class="product">
-											<div class="product-img" width="250" height="250" >
-												<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
+											<div class="product-img">
+												<img src="./img/<?php echo $value['pro_image'] ?>" style="width:250px" alt="">
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>

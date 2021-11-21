@@ -189,7 +189,7 @@
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
+										<img src="./img/<?php echo $value['pro_image'] ?>" style="width:250px" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
