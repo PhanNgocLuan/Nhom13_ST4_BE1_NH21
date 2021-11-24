@@ -19,6 +19,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
+    <form action="add.php" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">
@@ -34,32 +35,51 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="name">Product Name</label>
-                <input type="text" id="inputName" class="form-control">
+                <input name ="name" type="text" id="inputName" class="form-control">
               </div>
               <div class="form-group">
-                <label for="manu_id">Manu_id</label>
-                <input type="text" id="manu_id" class="form-control">
+                <label for="manu_id">Manufactures</label>
+                <select id="inputManu" name="manu" class="form-control custom-select">
+                  <?php
+                    $manufacture = new Manufacture;
+                    $getAllManu = $manufacture->getAllManu();
+                    foreach($getAllManu as $value):
+                  ?>
+                  <option value=<?php echo $value['manu_id']?>>
+                    <?php echo $value['manu_name'] ?>
+                  </option>
+                  <?php endforeach ?>
+                </select>
               </div>
               <div class="form-group">
-                <label for="type_id">Type_id</label>
-                <input type="text" id="type_id" class="form-control">
+                <label for="type_id">Protype</label>
+                <select id="inputType" name="type" class="form-control custom-select">
+                  <?php
+                  $type = new Protype;
+                  $getAllProtype = $type->getAllProtype();
+                  foreach($getAllProtype as $value) { ?>
+                  <option value=<?php echo $value['type_id'] ?>>
+                    <?php echo $value['type_name'] ?>
+                  </option>
+                  <?php } ?>
+                </select>
               </div>
               <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" id="price" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pro_image">Pro_image</label>
-                <input type="text" id="pro_image" class="form-control">
+                <input name="price"  type="text" id="price" class="form-control">
               </div>
               <div class="form-group">
                 <label for="description">Product Description</label>
-                <textarea id="description" class="form-control" rows="4"></textarea>
+                <textarea name="desc" id="description" class="form-control" rows="4"></textarea>
               </div>
               <div class="form-group">
                 <label for="feature">Feature</label>
-                <input type="text" id="feature" class="form-control">
+                <input name="feature" type="text" id="feature" class="form-control">
               </div>
+            </div>
+            <div class="form-group">
+                <label for="pro_image">Pro_image</label>
+                <input type="file" name="image" class="form-control">
             </div>
             <!-- /.card-body -->
           </div>
@@ -69,8 +89,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Create new Porject" class="btn btn-success float-right">
+          <input name = "submit" type="submit" value="Create new Project" class="btn btn-success float-right">
         </div>
       </div>
     </section>
