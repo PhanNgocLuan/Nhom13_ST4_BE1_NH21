@@ -8,7 +8,7 @@ class Product extends Db{
         AND products.type_id=protypes.type_id");
         return parent::select($sql);
     }
-    public function addProducts($name,$manu_id,$type_id,$price,$image,$desc,$feature)
+    public function addProduct($name,$manu_id,$type_id,$price,$image,$desc,$feature)
     {
         $sql = self::$connection->prepare("INSERT 
         INTO `products`(`name`, `manu_id`, `type_id`, `price`, `pro_image`, `description`, `feature`) 
@@ -21,5 +21,4 @@ class Product extends Db{
         $sql->bind_param("i",$id);
         return $sql->execute(); //return an object
     }
-
 }

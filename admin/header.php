@@ -4,6 +4,10 @@ require "models/db.php";
 require "models/product.php";
 require "models/manufacture.php";
 require "models/protype.php";
+session_start();
+if(isset($_SESSION['user']) == null){
+  header('location: login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +40,10 @@ require "models/protype.php";
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  
+  <!-- Preloader
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div> -->
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -172,6 +179,11 @@ require "models/protype.php";
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php" role="button">
+        <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -247,7 +259,7 @@ require "models/protype.php";
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="manu-add.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Manufacture</p>
                 </a>
@@ -270,7 +282,7 @@ require "models/protype.php";
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="type-add.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Protype</p>
                 </a>

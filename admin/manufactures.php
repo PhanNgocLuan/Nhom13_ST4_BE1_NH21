@@ -57,7 +57,7 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a class="btn btn-danger btn-sm" href="delete.php?manu_id=<?php echo $value['manu_id']?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

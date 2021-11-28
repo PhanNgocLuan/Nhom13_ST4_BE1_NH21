@@ -49,7 +49,6 @@
               </thead>
               <tbody>
               <?php 
-              //khai báo product
               $product = new Product;
               $getAllProducts = $product->getAllProducts();
               foreach($getAllProducts as $value){ ?>
@@ -66,7 +65,7 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="delproduct.php?id=<?php echo $value['id']?>">
+                          <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $value['id']?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

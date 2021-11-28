@@ -17,6 +17,31 @@ class Product extends Db
         $sql = self::$connection->prepare("SELECT * FROM `products` ORDER BY `id` DESC LIMIT 0,10");
         return parent::select($sql);
     }
+    public function getNew10ProductsTypeId1()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 1 ORDER BY `id` DESC LIMIT 0,10");
+        return parent::select($sql);
+    }
+    public function getNew10ProductsTypeId2()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 2 ORDER BY `id` DESC LIMIT 0,10");
+        return parent::select($sql);
+    }
+    public function getNew10ProductsTypeId3()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 3 ORDER BY `id` DESC LIMIT 0,10");
+        return parent::select($sql);
+    }
+    public function getNew10ProductsTypeId4()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 4 ORDER BY `id` DESC LIMIT 0,10");
+        return parent::select($sql);
+    }
+    public function getNew10ProductsTypeId5()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 5 ORDER BY `id` DESC LIMIT 0,10");
+        return parent::select($sql);
+    }
     public function searchProducts($keyword)
     {
         $sql = parent::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? ");
