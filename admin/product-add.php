@@ -55,13 +55,13 @@
                 <label for="type_id">ProType</label>
                 <select id="inputType" name="type" class="form-control custom-select">
                   <?php
-                  $type = new Protype;
-                  $getAllProtype = $type->getAllProtype();
-                  foreach($getAllProtype as $value) { ?>
+                  $protype = new Protype;
+                  $getAllProtype = $protype->getAllProtype();
+                  foreach($getAllProtype as $value): ?>
                   <option value=<?php echo $value['type_id'] ?>>
                     <?php echo $value['type_name'] ?>
                   </option>
-                  <?php } ?>
+                  <?php endforeach ?>
                 </select>
               </div>
               <div class="form-group">
