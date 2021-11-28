@@ -27,4 +27,19 @@ if(isset($_GET['manu_id']))
         header('location:manufactures.php');
     }        
 }
+//xoa loai
+if(isset($_GET['type_id']))
+{
+    $type_id = $_GET['type_id'];
+    $typearr = $protype->countToTalProductOfAType($type_id);
+    $total = $typearr['soLuongSanPham'];
+    if($total > 0)
+    {
+        echo "This Protype has product ! .<a href='javascript: history.go(-1)'>Go Back</a>";
+    }
+    else {
+        $protype->delProtype($type_id);
+        header('location:protypes.php');
+    }        
+}
 
