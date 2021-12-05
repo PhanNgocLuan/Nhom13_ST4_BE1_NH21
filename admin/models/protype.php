@@ -11,6 +11,7 @@ class Protype extends Db{
         $sql->bind_param("s", $type_name);
         return $sql->execute(); //return an object
     }
+    //
     public function delProtype($type_id){
         $sql = self::$connection->prepare("DELETE FROM protypes WHERE type_id = ?");
         $sql->bind_param("i",$type_id);
@@ -22,5 +23,11 @@ class Protype extends Db{
         $item = mysqli_query(self::$connection,$sql);
         $items1 = mysqli_fetch_assoc($item);
         return $items1;
+    }
+    public function editProtype($type_name)
+    {
+        $sql = self::$connection->prepare("INSERT INTO `protypes`(`type_name`) VALUES (?)");
+        $sql->bind_param("s", $type_name);
+        return $sql->execute(); //return an object
     }
 }
