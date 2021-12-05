@@ -24,6 +24,7 @@ class Protype extends Db{
         $items1 = mysqli_fetch_assoc($item);
         return $items1;
     }
+    //
     public function editProtype($type_name)
     {
         $sql = self::$connection->prepare("INSERT INTO `protypes`(`type_name`) VALUES (?)");
