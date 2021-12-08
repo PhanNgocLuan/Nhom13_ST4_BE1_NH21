@@ -25,10 +25,16 @@ class Protype extends Db{
         return $items1;
     }
     //
-    public function editProtype($type_name)
+    public function updateProtype($type_id,$type_name)
     {
-        $sql = self::$connection->prepare("INSERT INTO `protypes`(`type_name`) VALUES (?)");
-        $sql->bind_param("s", $type_name);
+        $sql = self::$connection->prepare("UPDATE protypes SET type_name = '$type_name' WHERE type_id = '$type_id'");
         return $sql->execute(); //return an object
+    }
+    public function getProtypeById($type_id)
+    {
+        $sql = "SELECT * FROM protypes WHERE type_id = $type_id";
+        $item = mysqli_query(self::$connection,$sql); 
+        $item1 = mysqli_fetch_assoc($item);
+        return $item1;
     }
 }

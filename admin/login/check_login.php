@@ -9,7 +9,7 @@
 		$username = $_POST['username'];
 		$password = md5($_POST['password']);
 		//kiem tra dung du lieu
-		$userarr = $user->getUserByName_Pass($username,$password);		
+		$userarr = $user->getAdmin($username,$password);		
 			if($username == $userarr['user_name'] && $password == $userarr['password'])
 			{
 				$_SESSION['user'] = $userarr;													

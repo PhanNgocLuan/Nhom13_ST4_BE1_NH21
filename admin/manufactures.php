@@ -52,7 +52,7 @@
                       <td><?php echo $value['manu_id']?></td>
                       <td><?php echo $value['manu_name']?></td>
                       <td>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="formEditManu.php?manu_id=<?php echo $value['manu_id']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

@@ -53,7 +53,7 @@
                       <td><?php echo $value['type_id']?></td>
                       <td><?php echo $value['type_name']?></td>
                       <td>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="formEditProtype.php?type_id=<?php echo $value['type_id']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

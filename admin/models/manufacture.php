@@ -24,4 +24,16 @@ class Manufacture extends Db{
         $items1 = mysqli_fetch_assoc($item);
         return $items1;
     }
+    public function updateManu($manu_id,$manu_name)
+    {
+        $sql = self::$connection->prepare("UPDATE manufactures SET manu_name = '$manu_name' WHERE manu_id = '$manu_id'");
+        return $sql->execute(); //return an object
+    }
+    public function getManuById($manu_id)
+    {
+        $sql = "SELECT * FROM manufactures WHERE manu_id = $manu_id";
+        $item = mysqli_query(self::$connection,$sql); 
+        $item1 = mysqli_fetch_assoc($item);
+        return $item1;
+    }
 }

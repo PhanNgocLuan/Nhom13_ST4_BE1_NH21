@@ -60,7 +60,7 @@
                       <td><?php echo $value['manu_name']?></td>
                       <td><?php echo $value['type_name']?></td>
                       <td>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="formEditProduct.php?id=<?php echo $value['id']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
