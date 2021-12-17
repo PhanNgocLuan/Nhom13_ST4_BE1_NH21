@@ -12,4 +12,9 @@ class User extends Db{
 		$item1 = mysqli_fetch_assoc($item);
 		return $item1;
 	}
+	function getAllUserAdmin()
+	{			
+		$sql = self::$connection->prepare("SELECT * FROM users, roles WHERE users.roles = roles.role_id"); 		
+		return parent::select($sql);
+    }
 }

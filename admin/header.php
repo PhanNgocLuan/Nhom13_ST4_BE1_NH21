@@ -4,6 +4,7 @@ require "models/db.php";
 require "models/product.php";
 require "models/manufacture.php";
 require "models/protype.php";
+require "models/user.php";
 session_start();
 if(isset($_SESSION['user']) == null){
   header('location: login/login.php');
@@ -290,7 +291,7 @@ if(isset($_SESSION['user']) == null){
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="users.php" class="nav-link">
             <i class="fas fa-users"></i>
               <p>List Users</p>
             </a>

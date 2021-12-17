@@ -66,7 +66,7 @@
               </div>
               <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" name="price" class="form-control">
+                <input type="number" name="price" class="form-control">
               </div>
               <div class="form-group">
                 <label for="description">Product Description</label>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Nov 03, 2021 at 12:49 AM
+-- Generation Time: Dec 17, 2021 at 04:11 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nhom13`
+-- Database: `nhom_13`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,16 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `name_comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `comment_content`, `comment_rate`, `product_id`, `name_comment`, `created_at`) VALUES
+(87, '1', 2, 60, 'aaa', '2021-12-15 13:26:03'),
+(86, 'aaa', 4, 30, 'a', '2021-12-14 04:19:30'),
+(85, 'a', 4, 33, 'a', '2021-12-14 04:05:57');
 
 -- --------------------------------------------------------
 
@@ -50,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `manufactures` (
   `manu_id` int(11) NOT NULL AUTO_INCREMENT,
   `manu_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`manu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `manufactures`
@@ -62,6 +71,67 @@ INSERT INTO `manufactures` (`manu_id`, `manu_name`) VALUES
 (3, 'Sony'),
 (4, 'SamSung'),
 (5, 'Anker');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetail`
+--
+
+DROP TABLE IF EXISTS `orderdetail`;
+CREATE TABLE IF NOT EXISTS `orderdetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orderdetail`
+--
+
+INSERT INTO `orderdetail` (`id`, `order_id`, `image`, `name`, `price`, `quantity`, `total`) VALUES
+(17, 8, '51my0cfnshl._sl1500__e7b84200b0bc4c0ba7b9e10ef349727d_master', 'Tai Nghe Bluetooth Anker SoundCore SoundBuds Slim', 800000, 1, 800000),
+(18, 9, 'iphone13pro.jpg', 'iPhone 13 Pro Max', 33990000, 1, 33990000),
+(19, 9, '51my0cfnshl._sl1500__e7b84200b0bc4c0ba7b9e10ef349727d_master', 'Tai Nghe Bluetooth Anker SoundCore SoundBuds Slim', 800000, 1, 800000),
+(20, 10, 'ip6.jpg', 'iphone 6s Plus 64GB ', 2500000, 1, 2500000),
+(21, 10, 'sac-anker-powerport-mini-2-cong-12w-a2620_1.jpg', 'Sạc Anker PowerPort Mini 12w 2 Cổng - A2620', 225000, 1, 225000),
+(22, 11, 'sac-anker-powerport-mini-2-cong-12w-a2620_1.jpg', 'Sạc Anker PowerPort Mini 12w 2 Cổng - A2620', 225000, 4, 900000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `grand_price` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `cus_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cus_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cus_phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cus_address` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `code`, `created_at`, `grand_price`, `user_id`, `cus_name`, `cus_email`, `cus_phone`, `cus_address`, `message`, `status`) VALUES
+(8, 90571, '2021-12-16 08:03:57', 800000, 3, 'test345', 'luanphan110@gmail.com', '12324234', 'brvt', 'aaa', 'progress'),
+(9, 21965, '2021-12-16 08:05:11', 34790000, 3, 'samsung', 'luanphan110@gmail.com', '12324234', 'brvt', 'aaa', 'progress'),
+(10, 77296, '2021-12-17 02:15:16', 2725000, 3, 'samsung', 'luanphan110@gmail.com', '12324234', 'brvt', 'df', 'progress');
 
 -- --------------------------------------------------------
 
@@ -81,16 +151,15 @@ CREATE TABLE IF NOT EXISTS `products` (
   `feature` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`, `description`, `feature`, `created_at`) VALUES
-(2, 'Iphone 6s Plus 64GB ', 1, 1, 2500000, 'ip6.jpg', 'iPhone 6s Plus 64 GB được nâng cấp độ phân giải camera sau lên 12 MP (thay vì 8 MP như trên iPhone 6 Plus), camera cho tốc độ lấy nét và chụp nhanh, thao tác chạm để chụp nhẹ nhàng. Chất lượng ảnh trong các điều kiện chụp khác nhau tốt', 1, '2021-10-20 03:30:50'),
+(2, 'iphone 6s Plus 64GB ', 1, 1, 2500000, 'ip6.jpg', 'iPhone 6s Plus 64 GB được nâng cấp độ phân giải camera sau lên 12 MP (thay vì 8 MP như trên iPhone 6 Plus), camera cho tốc độ lấy nét và chụp nhanh, thao tác chạm để chụp nhẹ nhàng. Chất lượng ảnh trong các điều kiện chụp khác nhau tốt', 1, '2021-12-01 03:38:30'),
 (4, 'Iphone 11 Pro MAX', 1, 1, 20000000, 'iphone11promax.png', 'Mặt lưng của iPhone 7 Plus được thiết kế với phần ăng-ten được đưa vòng lên trên thay vì cắt ngang mặt lưng như những phiên bản trước là iPhone 6 Plus mang lại cảm giác thoải mái khi cầm nắm.', 1, '2021-10-20 02:37:21'),
-(5, 'Iphone XS MAX ', 1, 1, 15000000, 'iphonexsmax.jpg', 'Mặt lưng của iPhone 7 Plus được thiết kế với phần ăng-ten được đưa vòng lên trên thay vì cắt ngang mặt lưng như những phiên bản trước là iPhone 6 Plus mang lại cảm giác thoải mái khi cầm nắm.', 1, '2020-11-22 14:08:56'),
 (6, 'Laptop Dell Vostro 3491 i3 1005G1/4GB/256GB/Win10 (70223127)', 2, 2, 11000000, 'lap1.jpg', 'Dell Vostro 3491 có thiết kế hiện đại, tối giản từ chất liệu nhựa, tông màu đen sang trọng. Máy có độ dày 21 mm, trọng lượng 1.66 kg dễ dàng để các bạn học sinh sinh viên có thể đem theo đến lớp, đi cà phê,..', 1, '2020-11-22 14:08:56'),
 (7, 'Laptop Dell Vostro 3580 i3 8145U/4GB/1TB/Win10 (V5I3058W)\r\n', 2, 2, 10000000, 'lap2.jpg', 'Dell luôn được yêu thích vì độ bền cao, Dell Vostro 3580 là một chiếc laptop tối ưu với sức chịu đựng, cứng cáp, chắc chắn. Chiếc laptop có trọng lượng 2.16 kg, không quá nặng để bạn mang theo bên mình khi đi học hay đi làm.', 1, '2020-11-22 14:08:56'),
 (8, 'Laptop Dell Inspiron 5584 i3 8145U/4GB/1TB/Win10 (70186849)\r\n', 2, 2, 12000000, 'lap3.jpg', 'Dell Inspiron 5584 i3 8145U (70186849) được thiết kế đơn giản, thanh lịch. Trọng lượng nhẹ và cấu hình khá, phù hợp cho sinh viên - nhân viên văn phòng khi đi làm và đi học.', 1, '2020-11-22 14:08:56'),
@@ -121,7 +190,7 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`
 (32, 'Cáp Anker PowerLine II Lightning 3m A8432', 5, 5, 344000, 'cap-lightning-anker-powerline-ii-a8434-3m.jpg', 'Bền bỉ gấp 5 lần với 12000 lần uốn cong\r\nAnker đã làm mọi cách để đưa thương hiệu trở thành phụ kiện bền bỉ nhất thế giới. Chứng minh bằng những thử nghiệm chân thực nhất, cáp Anker PowerLine II Lightning 3m A8434 có độ bền cao gấp 5 lần so với cáp sạc thông thường.', 0, '2021-10-20 03:21:00'),
 (33, 'Sạc Anker PowerPort Mini 12w 2 Cổng - A2620', 5, 5, 225000, 'sac-anker-powerport-mini-2-cong-12w-a2620_1.jpg', 'Anker PowePort Mini 12W với thiết kế nhỏ gọn vừa vặn trong lòng bàn tay\r\nĐối với những người đang sử dụng những ổ cắm có kích thước nhỏ thì việc có được một củ sạc nhỏ gọn là điều vô cùng tiện ích. Nắm được điểm yếu này Anker đã cho ra đời sản phẩm có kích thước siêu nhỏ giúp tiết kiệm không gian tối đa trên các ổ cắm', 0, '2021-10-20 03:23:30'),
 (34, 'Tai Nghe Bluetooth Anker SoundCore SoundBuds Slim', 5, 3, 800000, '51my0cfnshl._sl1500__e7b84200b0bc4c0ba7b9e10ef349727d_master', 'Anker soundcore slim - Thiết kế siêu nhẹ chỉ 14g, thoải mái với EarTips và EarWings nhiều lớp, nhiều kích cỡ\r\nAnker Soundcore Slim được thiết kế mỏng và nhẹ (14g) với kích thước 55.3x3.1x1.2 cm, đồng thời mang lại hiệu năng cao. Hai tai gắn với nhau bằng từ tính khi không sử dụng dễ dàng cất gọn vào túi mang đi. Phần củ tai được thiết kế nghiêng một góc 45 độ giúp tai nghe vào sâu hơn, thiết kế này giúp tai nghe dạng in-ear này vào sâu hơn trong ống tai từ đó nâng cao chất lượng âm bass.', 0, '2021-10-20 03:25:46'),
-(60, 'iPhone 13 Pro Max', 1, 1, 33990000, 'iphone13pro.jpg', 'Một trong những yếu tố khiến iPhone 13 Pro Max đáng mong chờ đó là thiết kế notch \"tai thỏ\" được thu gọn lại. Ngoài kích cỡ màn hình 6.7 inch với tấm nền Super Retina XDR OLED, máy sẽ có thiết kế notch được thu hẹp lại, giúp tăng tỷ lệ hiển thị trên màn hình điện thoại. Tất nhiên, những cảm biến quan trọng như TrueDepth, Face ID hoặc camera selfie đều sẽ giữ nguyên vị trí.', 1, '0000-00-00 00:00:00');
+(60, 'iPhone 13 Pro Max', 1, 1, 33990000, 'iphone13pro.jpg', 'Một trong những yếu tố khiến iPhone 13 Pro Max đáng mong chờ đó là thiết kế notch \"tai thỏ\" được thu gọn lại. Ngoài kích cỡ màn hình 6.7 inch với tấm nền Super Retina XDR OLED, máy sẽ có thiết kế notch được thu hẹp lại, giúp tăng tỷ lệ hiển thị trên màn hình điện thoại. Tất nhiên, những cảm biến quan trọng như TrueDepth, Face ID hoặc camera selfie đều sẽ giữ nguyên vị trí.', 1, '2021-12-14 03:15:33');
 
 -- --------------------------------------------------------
 
@@ -134,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `protypes` (
   `type_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `protypes`
@@ -145,7 +214,73 @@ INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
 (2, 'Laptop'),
 (4, 'Đồng hồ thông minh'),
 (3, 'Tai nghe'),
-(5, 'Sạc ');
+(5, 'Sạc');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `role_name`) VALUES
+(1, 'admin'),
+(2, 'users');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `password`, `roles`) VALUES
+(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1),
+(2, 'user1', '827ccb0eea8a706c4c34a16891f84e7b', 2),
+(3, 'luan1234', 'e10adc3949ba59abbe56e057f20f883e', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlists`
+--
+
+DROP TABLE IF EXISTS `wishlists`;
+CREATE TABLE IF NOT EXISTS `wishlists` (
+  `wishlist_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pro_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`wishlist_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wishlists`
+--
+
+INSERT INTO `wishlists` (`wishlist_id`, `pro_id`, `user_id`) VALUES
+(5, 60, 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

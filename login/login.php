@@ -1,25 +1,29 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['customer'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    <title>Customer | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="../admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href=""><b>Admin</b>LTE</a>
+            <a href=""><b>Customer </b>LTE</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -62,6 +66,9 @@
                 <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
+                <p class="mb-0">
+                    <a href="../register.php" class="text-center">Register a new membership</a>
+                </p>
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -75,5 +82,9 @@
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
 </body>
-
 </html>
+<?php }
+ else{
+    echo "You are logged in!!! .<a href='javascript: history.go(-1)'>Go Back</a>";
+ }
+?>

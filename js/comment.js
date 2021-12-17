@@ -45,7 +45,7 @@ async function addComment(comment_content, comment_rate, product_id, name_commen
     const result = await response.json();
     var star = "";
     for (var i = 1; i <= comment_rate; i++) {
-        star += '<i class="fa fa-star" style="color:#FF9900"></i>';
+        star += '<i class="fa fa-star"></i>';
         var sum = 0;
         var total_star = 0;
         result.forEach(function(element) {

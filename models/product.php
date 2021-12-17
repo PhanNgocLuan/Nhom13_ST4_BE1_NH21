@@ -85,5 +85,19 @@ class Product extends Db
                 }
         return $link;
     }
+    public function getRelatedProducts($type_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM products, protypes WHERE products.type_id = protypes.type_id AND protypes.type_id = $type_id LIMIT 10");
+        $sql->execute();//return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+    function getProductCartById($id){
+        $sql = "SELECT * FROM products WHERE id = $id";
+        $item = mysqli_query(self::$connection,$sql); 
+        $item1 = mysqli_fetch_assoc($item);
+        return $item1;
+    }
 }
 
