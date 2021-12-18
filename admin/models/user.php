@@ -17,4 +17,10 @@ class User extends Db{
 		$sql = self::$connection->prepare("SELECT * FROM users, roles WHERE users.roles = roles.role_id"); 		
 		return parent::select($sql);
     }
+	function countToTalUser(){
+        $sql = "SELECT COUNT(`user_id`) AS count_user FROM users";
+        $item = mysqli_query(self::$connection,$sql);
+        $items1 = mysqli_fetch_assoc($item);
+        return $items1;
+    }
 }

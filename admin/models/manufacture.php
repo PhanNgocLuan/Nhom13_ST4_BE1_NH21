@@ -36,4 +36,10 @@ class Manufacture extends Db{
         $item1 = mysqli_fetch_assoc($item);
         return $item1;
     }
+    function countToTalManu(){
+        $sql = "SELECT COUNT(manu_id) AS count_manu FROM manufactures";
+        $item = mysqli_query(self::$connection,$sql);
+        $items1 = mysqli_fetch_assoc($item);
+        return $items1;
+    }
 }

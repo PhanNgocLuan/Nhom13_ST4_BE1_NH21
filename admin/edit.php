@@ -4,6 +4,8 @@
 	require "models/product.php";
 	require "models/protype.php";
 	require "models/manufacture.php";
+	require "models/orders.php";
+	require "models/orderdetail.php";
 	if($_POST['action'] == 'product' && isset($_POST['id']))
 	{
 		$id = $_POST['id'];
@@ -88,4 +90,12 @@
 			$manufacture->updateManu($manu_id,$manu_name);
 			echo "Update succesfully!!! .<a href='javascript: history.go(-2)'>Go Back</a>";
 		}
+	}
+	if($_POST['action'] == 'status' && isset($_POST['order_id']) || isset($_POST['select_status']))
+	{
+		$order_id = $_POST['order_id'];
+		$status = $_POST['select_status'];
+		$order = new Order();
+		$updateStatus = $order->updateStatus($order_id,$status);
+		echo "Update succesfully!!! .<a href='javascript: history.go(-1)'>Go Back</a>";
 	}

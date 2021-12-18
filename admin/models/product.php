@@ -34,4 +34,10 @@ class Product extends Db{
         SET name = '$name',manu_id = '$manu_id',type_id = '$type_id',price = '$price',pro_image = '$pro_image',description = '$description',feature = '$feature' WHERE id = '$id'");
         return $sql->execute(); //return an object
     }
+    function countToTalProduct(){
+        $sql = "SELECT COUNT(id) AS count_product FROM products";
+        $item = mysqli_query(self::$connection,$sql);
+        $items1 = mysqli_fetch_assoc($item);
+        return $items1;
+    }
 }

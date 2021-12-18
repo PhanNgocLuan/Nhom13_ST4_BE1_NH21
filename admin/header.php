@@ -5,6 +5,8 @@ require "models/product.php";
 require "models/manufacture.php";
 require "models/protype.php";
 require "models/user.php";
+require "models/orders.php";
+require "models/orderdetail.php";
 session_start();
 if(isset($_SESSION['user']) == null){
   header('location: login/login.php');
@@ -42,9 +44,9 @@ if(isset($_SESSION['user']) == null){
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -214,7 +216,7 @@ if(isset($_SESSION['user']) == null){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="index.php" class="nav-link active">
+            <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -223,7 +225,7 @@ if(isset($_SESSION['user']) == null){
           </li>
             <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-align-justify"></i>
+            <i class="fab fa-d-and-d"></i>
               <p>
                 Products
                 <i class="right fas fa-angle-left"></i>
@@ -232,13 +234,13 @@ if(isset($_SESSION['user']) == null){
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="products.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>List Products</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="product-add.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>Add Product</p>
                 </a>
               </li>
@@ -246,7 +248,7 @@ if(isset($_SESSION['user']) == null){
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-align-justify"></i>
+            <i class="fas fa-fan"></i>
               <p>
                 Manufactures
                 <i class="right fas fa-angle-left"></i>
@@ -255,13 +257,13 @@ if(isset($_SESSION['user']) == null){
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="manufactures.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>List Manufactures</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="manu-add.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>Add Manufacture</p>
                 </a>
               </li>
@@ -269,7 +271,7 @@ if(isset($_SESSION['user']) == null){
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="fas fa-align-justify"></i>
+            <i class="fab fa-hornbill"></i>
               <p>
               Protypes
                 <i class="right fas fa-angle-left"></i>
@@ -278,13 +280,13 @@ if(isset($_SESSION['user']) == null){
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="protypes.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>List Protypes</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="type-add.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>Add Protype</p>
                 </a>
               </li>
@@ -294,6 +296,12 @@ if(isset($_SESSION['user']) == null){
             <a href="users.php" class="nav-link">
             <i class="fas fa-users"></i>
               <p>List Users</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="orders.php" class="nav-link">
+            <i class="fa fa-shopping-cart"></i>
+              <p>List Orders</p>
             </a>
           </li>
         </ul>

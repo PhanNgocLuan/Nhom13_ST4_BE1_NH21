@@ -37,4 +37,10 @@ class Protype extends Db{
         $item1 = mysqli_fetch_assoc($item);
         return $item1;
     }
+    function countToTalProtype(){
+        $sql = "SELECT COUNT(`type_id`) AS count_protype FROM protypes";
+        $item = mysqli_query(self::$connection,$sql);
+        $items1 = mysqli_fetch_assoc($item);
+        return $items1;
+    }
 }

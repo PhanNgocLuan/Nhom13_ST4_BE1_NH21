@@ -15,7 +15,7 @@
 		$timestamp = time();
 		$created_at = strftime($format, $timestamp );
 		$grand_price = $_POST['grand_price'];
-		var_dump($grand_price);
+		//var_dump($grand_price);
 		//
 		if(!empty($_SESSION['customer'])){
 			$user_id = ($_SESSION['customer']['user_id']);

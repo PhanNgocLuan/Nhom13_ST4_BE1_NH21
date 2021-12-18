@@ -36,7 +36,7 @@ $order = new Order();
                     </div>
                     <div class="row mb-1">
                         <h4 class="col-md-3">Grand Price</h4>
-                        <div class="col-md-9"><h4><?php echo $grand_price?></h4></div>
+                        <div class="col-md-9"><h4><?php echo number_format($grand_price,0)?></h4></div>
                     </div>
                     <div class="row mb-1">
                         <h4 class="col-md-3">Status</h4>
