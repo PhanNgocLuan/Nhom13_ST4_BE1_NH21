@@ -11,9 +11,10 @@
 		//xu li du lieu form
 		$code = rand(100,100000);
 		//xu li ngay thang
+		date_default_timezone_set('Asia/Ho_Chi_Minh');
 		$format = "%Y-%m-%d %H:%M:%S";
 		$timestamp = time();
-		$created_at = strftime($format, $timestamp );
+		$created_at = strftime($format, $timestamp);
 		$grand_price = $_POST['grand_price'];
 		//var_dump($grand_price);
 		//
