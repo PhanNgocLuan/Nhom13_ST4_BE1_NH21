@@ -108,6 +108,7 @@
 
 								<!-- tab3  -->
 								<div id="tab1" class="tab-pane fade in active">
+									<?php  if(isset($_SESSION['customer']) != null){ ?>
 									<div class="row">
 										<!-- Rating -->
 										<div class="col-md-4">
@@ -142,6 +143,7 @@
 												</div>
 											</div>
 										</div>
+										<?php } ?>
 										<!-- /Review Form -->
 									<div class="result-comment">
 										<p class="title">Comments</p>
